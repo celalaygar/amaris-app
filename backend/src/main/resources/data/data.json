@@ -1,0 +1,9 @@
+{
+  "exceptionStatus":
+    {
+      "SUCCESS": "SUCCESSFULLY",
+      "UNAUTHORIZED": "UNAUTHORIZED",
+      "BAD_CREDENTIAL": "BAD CREDENTIAL",
+      "INTERNAL_SERVER_ERROR": "INTERNAL SERVER ERROR"
+    }
+}
