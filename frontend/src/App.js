@@ -12,6 +12,7 @@ import AlertifyService from './services/AlertifyService';
 import Axios from 'axios';
 import ProtectedRoute from './ProtectedRoute';
 import { logoutAsync, selectedAuthentication, updateStateInStorage } from './redux/redux-toolkit/authentication/AuthenticationSlice';
+import MainPage from './pages/auth/MainPage';
 
 
 const App = () => {
@@ -39,7 +40,7 @@ const App = () => {
 
   let routeList = (
     <>
-      <Route path={PATH.PATH_LOGIN} element={selectedAuth.isLoggedIn ? <HomePage /> : <UserLoginPage />} />
+      <Route path={PATH.PATH_LOGIN} element={selectedAuth.isLoggedIn ? <HomePage /> : <MainPage />} />
       {
         RouteBaseList.map((route, index) =>
 

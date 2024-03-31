@@ -36,14 +36,11 @@ public class LoginApi {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
-		private ControlService controlService;
+	private ControlService controlService;
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
-
     @Autowired
     private UserServiceImpl userService;
-    @Autowired
-    private UserRepository repository;
 
 
 	private static Logger log = LoggerFactory.getLogger(LoginApi.class);
@@ -61,7 +58,7 @@ public class LoginApi {
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			String jwt = jwtTokenProvider.generateToken(authentication);
 			String username = authenticationRequest.getUsername();
-			Optional<User> opt = repository.findByUsername(username);
+			Optional<User> opt = userRepository.findByUsername(username);
 
 			if(!opt.isPresent()){
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
@@ -89,33 +86,5 @@ public class LoginApi {
 		return ResponseEntity.ok(roleClasses);
 	}
 
-
-	@GetMapping("/refresh-token")
-	public ResponseEntity<?> refreshtoken(HttpServletRequest request) throws Exception {
-		// From the HttpRequest get the claims
-		DefaultClaims claims = (DefaultClaims) request.getAttribute("claims");
-
-		Map<String, Object> expectedMap = getMapFromIoJsonwebtokenClaims(claims);
-		String token = jwtTokenProvider.doGenerateRefreshToken(expectedMap, expectedMap.get("sub").toString());
-		return ResponseEntity.ok(token);
-	}
-
-	public Map<String, Object> getMapFromIoJsonwebtokenClaims(DefaultClaims claims) {
-		Map<String, Object> expectedMap = new HashMap<String, Object>();
-		for (Map.Entry<String, Object> entry : claims.entrySet()) {
-			expectedMap.put(entry.getKey(), entry.getValue());
-		}
-		return expectedMap;
-	}
-
-	private User getUserFromToken(String authHeader) throws Exception {
-
-		String username = controlService.getUsernameFromToken(authHeader);
-		Optional<User> optUser = userRepository.findByUsername(username);
-		if(!optUser.isPresent()) {
-			throw new Exception("Not found User");
-		}
-		return optUser.get();
-	}
 
 }

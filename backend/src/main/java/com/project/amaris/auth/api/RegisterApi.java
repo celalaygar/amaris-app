@@ -1,4 +1,4 @@
-package com.project.amaris.user.api;
+package com.project.amaris.auth.api;
 
 import com.project.amaris.user.dto.UserSaveDto;
 import com.project.amaris.webConfig.jwt.JwtTokenProvider;

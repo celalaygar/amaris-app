@@ -51,11 +51,10 @@ public class WebSecurityConfig  {
                                 "/resources/**",
                                 "/error",
                                 "/image/barcode/**",
-                                "/show-document/**"
-                                ,"/api/route/**").permitAll()
-                        .requestMatchers("/api/registration").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                        .requestMatchers("/api/admin/**","/api/admin/user/**").hasRole("ADMIN")
-                        .requestMatchers("/api/manager/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_MANAGER")
+                                "/show-document/**",
+                                "/api/roles",
+                                "/api/registration",
+                                "/api/route/**").permitAll()
                         .anyRequest().fullyAuthenticated()
                 )
                 .exceptionHandling((exception) -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))

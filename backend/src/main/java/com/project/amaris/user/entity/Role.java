@@ -2,13 +2,7 @@ package com.project.amaris.user.entity;
 
 public enum Role {
     ADMIN("ADMIN"),
-    EXPORTER("İHRACATÇI"),
-    MANAGER("MÜDÜR"),
-    PHARMACY("ECZACI"),
-    PURCHASE("SATIN ALMA"),
-    WAREHOUSEMAN ("DEPOCU"),
-    ACCOUNTING ("MUHASEBECİ"),
-    LOGISTIC ("LOJİSTİKÇİ");
+    MANAGER("MÜDÜR");
 
 
     private String value;
