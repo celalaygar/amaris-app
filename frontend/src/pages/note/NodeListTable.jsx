@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dialog } from '@mui/material';
 import React, { useState } from 'react';
 
-const NodeListTable = ({ page }) => {
+const NodeListTable = ({ page, deleteNote }) => {
     const [openViewDialog, setOpenViewDialog] = useState(false);
     const [singleNote, setSingleNote] = useState(null);
     const handleCloseViewDialog = () => {
@@ -55,6 +55,8 @@ const NodeListTable = ({ page }) => {
 
                                             <li key={3} className="dropdown-item " >
                                                 <button
+
+                                                    onClick={e => deleteNote(e, note)}
                                                     className="dropdown-item btn btn-secondary btn-sm "
                                                     type="button"
                                                 > Sil  </button></li>

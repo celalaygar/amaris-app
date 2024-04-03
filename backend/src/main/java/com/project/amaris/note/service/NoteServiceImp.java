@@ -71,6 +71,7 @@ public class NoteServiceImp implements NoteService {
             log.error("NoteService.delete  Not found Note : " + note.getNoteId());
             throw new NullPointerException("Not found Note : " + note.getNoteId());
         }
+        note.setUser(null);
         noteRepository.delete(note);
         return true;
     }

@@ -130,6 +130,45 @@ const NotePage = ({ notes }) => {
         handleCloseInsertingNoteDialog();
     }
 
+
+    const deleteNote = async (event, note) => {
+        setIsLoading(true);
+        event.preventDefault();
+        if (error) {
+            setError(null);
+        }
+        try {
+            let body = {
+                ...note
+            };
+            if (formData.note !== undefined) {
+                const response = await NoteService.delete(body);
+                alertify.alert('Uyarı', "Not silinmiştir.");
+
+            } else {
+                let errors = {
+                    note: "Lütfen Not Giriniz",
+                }
+                setErrors({ ...errors })
+            }
+
+        } catch (error) {
+            if (error.response) {
+                console.log(error.response);
+                if (error.response.data.status === 500) {
+                }
+                if (error.response.data.validationErrors) {
+                    setErrors({ ...error.response.data.validationErrors })
+                }
+            }
+            else if (error.request)
+                console.log(error.request);
+            else
+                console.log(error.message);
+        }
+        setIsLoading(false);
+        getNotessWithPagination(page.number, page.size);
+    }
     return (
         <div className="row ">
             <div className="col-sm-12 mt-2">
@@ -154,7 +193,7 @@ const NotePage = ({ notes }) => {
                 {isLoading ? (
                     <Preloader width={50} height={50} />
                 ) : (
-                    <NodeListTable page={page} />
+                    <NodeListTable page={page} deleteNote={deleteNote} />
                 )}
             </div>
             {page.content.length > 0 ? (
