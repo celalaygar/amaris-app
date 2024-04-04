@@ -47,7 +47,6 @@ public class WebSecurityConfig  {
                         .requestMatchers(
                                 "/logout/default/**",
                                 "/api/login",
-                                "/refresh-token",
                                 "/error",
                                 "/api/roles",
                                 "/api/registration").permitAll()
