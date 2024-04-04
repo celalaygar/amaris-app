@@ -1,9 +1,6 @@
 
 server:
   port: 8500
-
-# local
-
 spring:
   output:
     ansi:
@@ -28,10 +25,6 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   main:
     allow-circular-references: true
-#  sql:
-#    init:
-#      data-locations: myscript_v1.sql
-#      mode: ALWAYS
   data:
     web:
       pageable:
