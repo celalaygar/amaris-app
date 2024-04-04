@@ -32,7 +32,6 @@ public class ControlService {
 		Optional<User> opt = userRepository.findByUsername(username);
 		if (!opt.isPresent()) {
 			throw new Exception("There is no user with " + username);
-			//throw new IllegalArgumentException("There is no user with " + id);
 		}
 		return opt.get();
 	}
@@ -41,7 +40,6 @@ public class ControlService {
 		Optional<User> opt = userRepository.findByUsername(username);
 		if (!opt.isPresent()) {
 			throw new Exception("There is no user with " + username);
-			//throw new IllegalArgumentException("There is no user with " + id);
 		}
 		return opt.get();
 	}

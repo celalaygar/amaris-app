@@ -48,13 +48,9 @@ public class WebSecurityConfig  {
                                 "/logout/default/**",
                                 "/api/login",
                                 "/refresh-token",
-                                "/resources/**",
                                 "/error",
-                                "/image/barcode/**",
-                                "/show-document/**",
                                 "/api/roles",
-                                "/api/registration",
-                                "/api/route/**").permitAll()
+                                "/api/registration").permitAll()
                         .anyRequest().fullyAuthenticated()
                 )
                 .exceptionHandling((exception) -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))

@@ -23,16 +23,11 @@ import java.util.stream.Collectors;
 @Component
 public class JwtTokenProvider {
 
-    //  @Value("${app.jwt.secret}")
-    // private String SECRET;
     public static final String SECRET = "2dae84f846e4f4b158a8d26681707f4338495bc7ab68151d7f7679cc5e56202dd3da0d356da007a7c28cb0b780418f4f3246769972d6feaa8f610c7d1e7ecf6a";
 
-    @Value("${app.jwt.token.prefix}")
-    private String jwtTokenPrefix;
+    private String jwtTokenPrefix = "Bearer";
 
-    @Value("${app.jwt.header.string}")
-    private String jwtHeaderString;
-    //@Value("${app.jwt.expiration-in-ms}")
+    private String jwtHeaderString = "Authorization";
     private static final Long jwtExpirationInMs = 10 * 60 * 60 * 1000L;
 
     private static final Long  refreshExpirationDateInMs = 8 * 60 * 60 * 1000L;
@@ -42,7 +37,6 @@ public class JwtTokenProvider {
 
         return Jwts.builder().setSubject(authentication.getName())
                 .claim("roles", authorities)
-                //.setExpiration(new Date(System.currentTimeMillis() + jwtExpirationInMs))
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationInMs))
                 .signWith(SignatureAlgorithm.HS512, SECRET).compact();
     }
@@ -95,24 +89,11 @@ public class JwtTokenProvider {
                 .getBody();
     }
 
-    // OLD
     public Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
-//    // NEW
-//    private Boolean isTokenExpired(String token) {
-//        return extractExpiration(token).before(new Date());
-//    }
-//
-//    // NEW
-//    public Boolean validateToken(String token, UserDetails userDetails) {
-//        final String username = extractUsername(token);
-//        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
-//    }
-
-    // OLD
     public boolean validateToken(HttpServletRequest request) {
         String token = resolveToken(request);
         if (token == null) {
@@ -126,12 +107,10 @@ public class JwtTokenProvider {
     }
 
 
-    // retrieve username from jwt token
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
-    // retrieve expiration date from jwt token
     public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
     }
@@ -144,7 +123,6 @@ public class JwtTokenProvider {
     }
 
 
-    // for retrieveing any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(SECRET)
                 .parseClaimsJws(token).getBody();
@@ -175,9 +153,6 @@ public class JwtTokenProvider {
         return null;
     }
 
-
-
-    // validate token
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));

@@ -3,10 +3,8 @@ package com.project.amaris.util;
 public class ApiPath {
 	private static final String BASE_PATH = "/api";
 	private static final String USER_PATH = "/user";
-	private static final String USERPATH = "/user";
 	private static final String ADMIN_PATH = "/admin";
 	private static final String MYACCOUNT_PATH = "/my-account";
-	private static final String ROUTE = "/route";
 	private static final String NOTE = "/note";
 
 	public static final class AdminUserCtrl {
@@ -17,9 +15,6 @@ public class ApiPath {
 	}
 	public static final class NoteCtrl {
 		public static final String CTRL = BASE_PATH + NOTE;
-	}
-	public static final class RouteCtrl {
-		public static final String CTRL = BASE_PATH + ROUTE;
 	}
 }
 

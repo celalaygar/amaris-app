@@ -28,7 +28,6 @@ public class UserSaveDto {
 
     @NotEmpty
     @NotNull
-//    @Size(min=3, max=30)
 //    @Pattern(regexp="(([A-Za-zğüşöçıİĞÜŞÖÇ]{3,30})|([A-Za-zğüşöçıİĞÜŞÖÇ]{2}[A-Za-zğüşöçıİĞÜŞÖÇ\\s]{1,}[A-Za-zğüşöçıİĞÜŞÖÇ]{1}))",message = "Lütfen Özel Karakter Girmeyiniz")
     private String surname;
 

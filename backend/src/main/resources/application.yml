@@ -42,15 +42,3 @@ spring:
       max-file-size: 15MB
       max-request-size: 15MB
 
-
-
-
-eczaneLink: http://222.111.7.222:1212/
-upload-path: image
-upload-barcode-path:  barcode
-upload-docs-path:  docs
-
-app.jwt.expiration-in-ms: 86400000
-app.jwt.token.prefix: Bearer
-app.jwt.header.string: Authorization
-app.jwt.secret: RandomSecretKey

@@ -47,11 +47,9 @@ public class BaseExceptionController implements ErrorController {
         int status		= (Integer) attributes.get("status");
         Date timestamp 	= (Date) attributes.get("timestamp");
         String exception 	= (String) attributes.get("exception");
-        //String trace 	= (String) attributes.get("trace");
         ApiErrorDto apiError = new ApiErrorDto(status, message, path, error);
         apiError.setHttpErrorType(HttpErrorType.STANDART);
         apiError.setCreatedDate(timestamp);
-        //ExceptionDetailDto detail = new ExceptionDetailDto(status,message, exception, null, error, timestamp);
         ExceptionDetailDto detail = new ExceptionDetailDto(status, message, exception, null);
         apiError.setDetail(detail);
         if(attributes.containsKey("errors")) {

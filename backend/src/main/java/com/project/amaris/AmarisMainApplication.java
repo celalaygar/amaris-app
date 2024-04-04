@@ -52,7 +52,7 @@ public class AmarisMainApplication {
 				user2.setFatherName("user2 fatt");
 				user1.setPhoneNumber("+95554441111");
 				user2.setStatus(1);
-				user2.setPassword(passwordEncoder.encode( "manageryusufk"));
+				user2.setPassword(passwordEncoder.encode( "managerrqr"));
 				user2.setFullname(user2.getName()+" "+user2.getSurname());
 				user2.setBornDate(new Date());
 				user2.setCreatedDate(new Date());

@@ -18,7 +18,6 @@ public class LogoutApi {
     private UserRepository userRepository;
 
 
-    // üye cıkıs yaparken login aktifliğini 0 a çeker
     @GetMapping("/user")
     public ResponseEntity<Boolean> logOut( @RequestHeader("Authorization") String authHeader ) throws Exception {
         User user = this.getUserFromToken(authHeader);
@@ -27,8 +26,6 @@ public class LogoutApi {
         return ResponseEntity.ok(true);
     }
 
-    // bu lınke uye gırısı yapmadan ulaşılabılıyor.
-    // uye gırısı yapmıs  bır user ın tokenı öldüğü zaman kullanılıyor.
     @GetMapping("/default/{username}")
     public ResponseEntity<Boolean> defaultLogOut( @RequestHeader("Authorization") String authHeader,
                                                   @PathVariable String username) throws Exception {

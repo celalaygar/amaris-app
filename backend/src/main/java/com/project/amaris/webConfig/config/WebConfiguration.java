@@ -20,30 +20,6 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
-    @Autowired
-    AppConfiguration app;
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-        registry.addResourceHandler("image/**").addResourceLocations("file:./"+app.getUploadPath()+"/")
-                .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
-    }
-
-    @Bean
-    CommandLineRunner createStorageDirectory() {
-        return (args) ->{
-            File folder = new File(app.getUploadPath());
-            Boolean control = folder.exists() && folder.isDirectory();
-            if(!control)  folder.mkdir();
-            folder = new File(app.getUploadPath()+"/"+app.getUploadBarcodePath());
-            control = folder.exists() && folder.isDirectory();
-            if(!control)   folder.mkdir();
-            folder = new File(app.getUploadDocsPath());
-            control = folder.exists() && folder.isDirectory();
-            if(!control)  folder.mkdir();
-        };
-    }
-
 
     @Bean
     public CorsFilter corsFilter() {

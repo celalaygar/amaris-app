@@ -54,7 +54,6 @@ public class UserServiceImpl {
             user.setIsLoggedIn(0);
             user.setPassword(user.getPassword().trim());
             user.setStatus(1);
-            //user.setRealPassword(user.getPassword());
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setCreatedDate(new Date());
             user.setFullname(user.getName() + " " + user.getSurname());
@@ -185,7 +184,6 @@ public class UserServiceImpl {
             throw new IllegalArgumentException("Şifreler uyuşmuyor.");
         if (dto.getNewPassword().equals(dto.getRepeatNewPassword())) {
             user.setPassword(passwordEncoder.encode(dto.getNewPassword()));
-            //user.setRealPassword(dto.getNewPassword());
             user = userRepository.save(user);
             result = true;
         } else {
